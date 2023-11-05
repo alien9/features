@@ -39,10 +39,11 @@ for f in glob.glob("./*.json"):
                     else:
                         setattr(line, k.lower(),  feat.properties.get(k))
                 session.add(line)
+                session.commit()
             if not line.wkb_geometry:   
                 statement=text("update here set wkb_geometry=st_geomfromgeojson(:geometry) where id=:id")
                 session.execute(statement, {"geometry":json.dumps(feat.geometry), "id":feat.id})
-            session.commit()
+                session.commit()
             n+=1
             print(f"\r{n} de {total}", end="")
         print(f"\n{m} insertions")
