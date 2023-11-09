@@ -1,7 +1,11 @@
 import requests, json, os
-tilele=210_321_300
-token="AD1QG78kk28SKHLtVSBVIZ8"
-tile=2103213002120
+from dotenv import dotenv_values
+
+conf=dotenv_values()
+
+
+token=conf["token"]
+tilele=conf["tile"]
 for t in range(4):
     for u in range(4):
         for v in range(4):
